@@ -1,11 +1,16 @@
-from email.mime import image
+import argparse
+from typing_extensions import Required
 import apriltag
 import cv2
+from numpy import var
 
-path = ''
+# Argument parser
+ap = argparse.ArgumentParser()
+ap.add_argument("-i", "--image", required=True, help="Path to the input image")
+args = vars(ap.parse_args)
 
 print('[INFO] Loading image...')
-image = cv2.imread(path, 0) # Load the image in grayscale format
+image = cv2.imread(args["image"], 0) # Load the image in grayscale format
 
 print('[INFO] Detecting AprilTags...')
 options = apriltag.DetectorOptions(families='tag36h11') # Define the detector's option
