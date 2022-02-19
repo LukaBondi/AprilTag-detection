@@ -1,17 +1,15 @@
 import argparse
-from typing_extensions import Required
 import apriltag
 import cv2
-from numpy import var
 
 # Argument parser
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", required=True, help="Path to the input image")
-args = vars(ap.parse_args)
+args = vars(ap.parse_args())
 
 print('[INFO] Loading image...')
 image = cv2.imread(args["image"], 0) # Load the image in grayscale format
-
+    
 print('[INFO] Detecting AprilTags...')
 options = apriltag.DetectorOptions(families='tag36h11') # Define the detector's option
 detector = apriltag.Detector(options)
